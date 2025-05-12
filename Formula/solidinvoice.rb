@@ -1,8 +1,8 @@
 class Solidinvoice < Formula
   desc "Simple and elegant invoicing solution."
   homepage "https://solidinvoice.co"
+  version "2.3.5"
   license "MIT"
-  version   "2.3.5"
 
   on_macos do
     if Hardware::CPU.intel?
@@ -44,6 +44,6 @@ class Solidinvoice < Formula
     #
     # The installed folder is not in the path, so use the entire path to any
     # executables being tested: `system bin/"program", "do", "something"`.
-    #system "false"
+    # system "false"
   end
 end
