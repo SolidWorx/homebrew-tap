@@ -12,6 +12,6 @@ ASSETS=(
 
 for f in "${ASSETS[@]}"; do
   url="https://github.com/solidinvoice/solidinvoice/releases/download/${VER}/${f}"
-  sha=$(curl -Ls "$url" | sha256sum | awk '{print $1}')   # or sha256sum
-  printf "%-40s %s\n" "$f" "$sha"
+  sha=$(curl -Ls "${url}" | sha256sum | awk '{print $1}')
+  printf "%-40s %s\n" "${f}" "${sha}"
 done
