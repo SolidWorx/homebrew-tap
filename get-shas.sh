@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-VER="$1"                     # e.g. 2.3.2
+VER="$1" # e.g. 2.3.2
 ASSETS=(
   solidinvoice-mac-arm64
   solidinvoice-mac-x86_64
@@ -10,7 +10,8 @@ ASSETS=(
   solidinvoice-linux-x86_64
 )
 
-for f in "${ASSETS[@]}"; do
+for f in "${ASSETS[@]}"
+do
   url="https://github.com/solidinvoice/solidinvoice/releases/download/${VER}/${f}"
   sha=$(curl -Ls "${url}" | sha256sum | awk '{print $1}')
   printf "%-40s %s\n" "${f}" "${sha}"
