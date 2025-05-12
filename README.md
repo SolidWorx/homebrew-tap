@@ -2,15 +2,15 @@
 
 ## How do I install these formulae?
 
-`brew install solidworx/tap/<formula>`
+`brew install solidworx/tap/solidinvoice`
 
-Or `brew tap solidworx/tap` and then `brew install <formula>`.
+Or `brew tap solidworx/tap` and then `brew install solidinvoice`.
 
 Or, in a `brew bundle` `Brewfile`:
 
 ```ruby
 tap "solidworx/tap"
-brew "<formula>"
+brew "solidinvoice"
 ```
 
 ## Documentation
