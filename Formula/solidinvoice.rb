@@ -1,5 +1,5 @@
 class Solidinvoice < Formula
-  desc "Simple and elegant invoicing solution."
+  desc "Simple and elegant invoicing solution"
   homepage "https://solidinvoice.co"
   version "2.3.5"
   license "MIT"
