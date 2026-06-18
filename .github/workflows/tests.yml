@@ -10,7 +10,20 @@ jobs:
   test-bot:
     strategy:
       matrix:
-        os: [ ubuntu-latest, ubuntu-latest-arm, macos-15-intel, macos-latest ]
+        os:
+          - ubuntu-latest
+          - ubuntu-22.04
+          - ubuntu-24.04
+          - ubuntu-26.04
+          - ubuntu-22.04-arm
+          - ubuntu-24.04-arm
+          - ubuntu-26.04-arm
+          - macos-15-intel
+          - macos-16-intel
+          - macos-latest
+          - macos-14
+          - macos-15
+          - macos-26
     runs-on: ${{ matrix.os }}
     permissions:
       actions: read
@@ -25,7 +38,7 @@ jobs:
           token: ${{ github.token }}
 
       - name: Cache Homebrew Bundler RubyGems
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ${{ steps.set-up-homebrew.outputs.gems-path }}
           key: ${{ matrix.os }}-rubygems-${{ steps.set-up-homebrew.outputs.gems-hash }}
@@ -41,7 +54,7 @@ jobs:
 
       - name: Upload bottles as artifact
         if: always() && github.event_name == 'pull_request'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: bottles_${{ matrix.os }}
           path: '*.bottle.*'
