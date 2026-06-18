@@ -1,28 +1,28 @@
 class Solidinvoice < Formula
   desc "Simple and elegant invoicing solution"
   homepage "https://solidinvoice.co"
-  version "2.3.5"
+  version "3.0.0"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.intel?
-      url     "https://github.com/solidinvoice/solidinvoice/releases/download/#{version}/solidinvoice-mac-x86_64"
-      sha256  "0ad69bc4ec992e8ddeebc9d77c7e20ccf9d8493e571a6fc440fc29a17c336a91"
+      url     "https://github.com/solidinvoice/solidinvoice/releases/download/#{version}/solidinvoice-mac-amd64"
+      sha256  "7b1cc8b1c49d65074a69ba09ce3ec426ae451148f987b372ae988fee912ec0c8"
     end
     if Hardware::CPU.arm?
       url     "https://github.com/solidinvoice/solidinvoice/releases/download/#{version}/solidinvoice-mac-arm64"
-      sha256  "fac7b0b89dcdb269aeceee08bd42ca8613ef6d93ef9bc519a2836896246b0b52"
+      sha256  "ab093d0530549c6b1adfd685231534158853bd7aa9d50aaf69267e621cdc1b68"
     end
   end
 
   on_linux do
     if Hardware::CPU.intel?
-      url     "https://github.com/solidinvoice/solidinvoice/releases/download/#{version}/solidinvoice-linux-aarch64"
-      sha256  "6f6633251ecdd43470ea385cd264b3f1516ef55fc57273af4615300184273912"
+      url     "https://github.com/solidinvoice/solidinvoice/releases/download/#{version}/solidinvoice-linux-amd64"
+      sha256  "c6d5d195e54d3dc2208ff439ed728e97cc21912cda9f94cacf3f3ad465a7ceff"
     end
     if Hardware::CPU.arm?
       url     "https://github.com/solidinvoice/solidinvoice/releases/download/#{version}/solidinvoice-linux-arm64"
-      sha256  "2c4d31de3b51d4439828f894401dc7c044be301a457229c59f98718e4a3b0a26"
+      sha256  "944635f03de5b38592c157e6dd1b07f1109d8899ea9f2d758c834a898250c57a"
     end
   end
 
@@ -33,8 +33,15 @@ class Solidinvoice < Formula
     bin.install bin_file => "solidinvoice"
   end
 
+  service do
+    run [opt_bin/"solidinvoice", "run"]
+    keep_alive true
+    log_path var/"log/solidinvoice.log"
+    error_log_path var/"log/solidinvoice.log"
+  end
+
   test do
-    assert_match version.to_s, shell_output("#{bin}/solidinvoice --version")
+    assert_match version.to_s, shell_output("#{bin}/solidinvoice version")
     # `test do` will create, run in and delete a temporary directory.
     #
     # This test will fail and we won't accept that! For Homebrew/homebrew-core
