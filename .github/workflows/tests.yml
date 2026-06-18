@@ -19,7 +19,7 @@ jobs:
           - ubuntu-24.04-arm
           - ubuntu-26.04-arm
           - macos-15-intel
-          - macos-16-intel
+          - macos-26-intel
           - macos-latest
           - macos-14
           - macos-15
