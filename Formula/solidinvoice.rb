@@ -1,7 +1,7 @@
 class Solidinvoice < Formula
   desc "Simple and elegant invoicing solution"
   homepage "https://solidinvoice.co"
-  version "3.0.0"
+  version "3.1.2"
   license "MIT"
 
   bottle do
@@ -16,24 +16,20 @@ class Solidinvoice < Formula
   end
 
   on_macos do
-    if Hardware::CPU.intel?
-      url     "https://github.com/solidinvoice/solidinvoice/releases/download/#{version}/solidinvoice-mac-amd64"
-      sha256  "7b1cc8b1c49d65074a69ba09ce3ec426ae451148f987b372ae988fee912ec0c8"
-    end
     if Hardware::CPU.arm?
       url     "https://github.com/solidinvoice/solidinvoice/releases/download/#{version}/solidinvoice-mac-arm64"
-      sha256  "ab093d0530549c6b1adfd685231534158853bd7aa9d50aaf69267e621cdc1b68"
+      sha256  "0e7d4b97b517a89d3762fc7ca0dae698d5b939fd91c7564cbf86bdd107a78f64"
     end
   end
 
   on_linux do
     if Hardware::CPU.intel?
       url     "https://github.com/solidinvoice/solidinvoice/releases/download/#{version}/solidinvoice-linux-amd64"
-      sha256  "c6d5d195e54d3dc2208ff439ed728e97cc21912cda9f94cacf3f3ad465a7ceff"
+      sha256  "8b3a395d9794455f0b364ea44343775a902c2e539924dde6a00e39fd85277925"
     end
     if Hardware::CPU.arm?
       url     "https://github.com/solidinvoice/solidinvoice/releases/download/#{version}/solidinvoice-linux-arm64"
-      sha256  "944635f03de5b38592c157e6dd1b07f1109d8899ea9f2d758c834a898250c57a"
+      sha256  "2369b913c103dd84840c5e015ee25bc09897c0f0f86766b4be93b99c9902b2d2"
     end
   end
 
