@@ -1,0 +1,46 @@
+name: bump formula
+
+on:
+  repository_dispatch:
+    types:
+      - update-formula
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Version to bump to (e.g. 3.2.0)
+        required: true
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      # A PAT is needed: PRs opened with GITHUB_TOKEN don't trigger tests.yml,
+      # so no bottles would be built.
+      - uses: actions/checkout@v5
+        with:
+          token: ${{ secrets.BUMP_TOKEN }}
+
+      - name: Bump formula and open PR
+        env:
+          VERSION: ${{ github.event.client_payload.version || inputs.version }}
+          GH_TOKEN: ${{ secrets.BUMP_TOKEN }}
+        run: |
+          if [[ ! "${VERSION}" =~ ^[0-9]+(\.[0-9]+)*(-[0-9A-Za-z.]+)?$ ]]
+          then
+            echo "Invalid version: '${VERSION}'" >&2
+            exit 1
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          branch="update-${VERSION}"
+          git switch -c "${branch}"
+          ./bump-version.sh "${VERSION}"
+          git commit -am "solidinvoice ${VERSION}"
+          git push origin "${branch}"
+          gh pr create --base main --head "${branch}" \
+            --title "solidinvoice ${VERSION}" \
+            --body "Automated bump to [${VERSION}](https://github.com/solidinvoice/solidinvoice/releases/tag/${VERSION}). Add the \`pr-pull\` label once CI is green to publish bottles."
