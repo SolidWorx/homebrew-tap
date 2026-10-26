@@ -5,7 +5,7 @@ set -euo pipefail
 VER="$1" # e.g. 2.3.2
 ASSETS=(
   solidinvoice-mac-arm64
-  solidinvoice-mac-x86_64
+  solidinvoice-mac-amd64
   solidinvoice-linux-amd64
   solidinvoice-linux-arm64
 )
