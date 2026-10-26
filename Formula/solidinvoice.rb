@@ -3,6 +3,17 @@ class Solidinvoice < Formula
   homepage "https://solidinvoice.co"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/SolidWorx/homebrew-tap/releases/download/solidinvoice-3.1.2"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "59f75a7c2dfbac741dd32713b0c87fb5c070f08971b505b008feddf5a9128e96"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "0cd4b4e1a4b1b165226cd4042a872dcdaffc84a9fd0fa9e1dc2b7b216a035f9d"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "182a6ca4d101a9b4454bb50f570404758af320d6ec0b02b5124f59e6fdc0cfe5"
+    sha256 cellar: :any_skip_relocation, tahoe:         "5dd152f0eb44d21f0dc97cfde64bb9e69edaa2c1e910eb366ee6e18a5ea74c3e"
+    sha256 cellar: :any_skip_relocation, sequoia:       "05455839c348d8cb7b74e45788a596b23868ab8be2d52037abf620ebe2560f5f"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "714a169bbf9e895bfa6e83483701d2c5614a6027d44acbbd6dfc0aae393e83c4"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "0930111238d7233ef0cec4c4d68ab4e08a4c57016cba2440d9fc69d973cea2ca"
+  end
+
   on_macos do
     if Hardware::CPU.intel?
       url     "https://github.com/solidinvoice/solidinvoice/releases/download/3.1.2/solidinvoice-mac-amd64"
