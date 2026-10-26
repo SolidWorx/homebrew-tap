@@ -13,7 +13,8 @@ ASSETS=(
 for f in "${ASSETS[@]}"
 do
   url="https://github.com/solidinvoice/solidinvoice/releases/download/${VER}/${f}"
-  if ! sha=$(curl -LsSf "${url}" | sha256sum | awk '{print $1}'); then
+  if ! sha=$(curl -LsSf "${url}" | sha256sum | awk '{print $1}')
+  then
     echo "Skipping ${f}: failed to download ${url}" >&2
     continue
   fi
